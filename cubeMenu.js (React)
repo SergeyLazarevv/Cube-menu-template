@@ -1,0 +1,40 @@
+const { useState } = React;
+
+const Cube = () => {
+    let [x,setX] = useState(40)
+    let [y,setY] = useState(30)
+    const rotate = (e) => {
+      //down
+      if(e.keyCode == 37) setY(y-=5)
+      //right
+      if(e.keyCode == 39) setY(y+=5)
+      //top
+      if(e.keyCode == 38) setX(x+=5)
+      //bottom
+      if(e.keyCode == 40) setX(x-=5)
+    }
+    return (
+      <div className='cube' tabindex="0" 
+        onKeyDown={(e)=>rotate(e)}
+        style={{transform :`rotateX(${x}deg) rotateY(${y}deg)`,color: 'red'}}>
+        <div className='side front'>1</div>
+        <div className='side back'>2</div>
+        <div className='side left'>3</div>
+        <div className='side right'>4</div>
+        <div className='side top'>6</div>
+        <div className='side bottom'>7</div>
+      </div>
+    )
+}
+
+const CubeApp = () => {
+  return (
+    <div className='cubeApp'>
+      <Cube size='' color='red'/>
+      <Cube size='' color='blue'/>
+      <Cube size='' color='green'/>
+    </div>
+  )
+};
+          
+ReactDOM.render(<Cube />,document.getElementById('root'))
